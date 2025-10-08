@@ -4,13 +4,11 @@ namespace App;
 
 use Tempest\Database\IsDatabaseModel;
 
-final class Book
+final class Author
 {
     use IsDatabaseModel;
 
-    public Author $author;
-
     public function __construct(
-        public string $title,
+        public string $name,
     ) {}
 }
