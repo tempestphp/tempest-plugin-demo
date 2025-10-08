@@ -15,6 +15,10 @@ final readonly class HomeController
         return view(
             './home.view.php',
             metaTitle: 'Tempest',
+            books: [
+                new Book('Timeline Taxi'),
+                new Book('LOTR 1'),
+            ]
         );
     }
 }
