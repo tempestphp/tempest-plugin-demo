@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Tempest\Container\Container;
 use Tempest\Http\Response;
 use Tempest\Http\Responses\Ok;
 use Tempest\Router\Get;
@@ -97,5 +98,10 @@ final readonly class HomeController
         return new Ok(
             uri([self::class, 'uri'], name: $name),
         );
+    }
+
+    public function autocompleteContainer(Container $container): void
+    {
+        $container->invoke([$this, 'autocompleteContainer'], container: $container);
     }
 }
