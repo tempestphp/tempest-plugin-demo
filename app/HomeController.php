@@ -2,10 +2,13 @@
 
 namespace App;
 
+use Tempest\Http\Response;
+use Tempest\Http\Responses\Ok;
 use Tempest\Router\Get;
 use Tempest\View\View;
 
 use function Tempest\Database\query;
+use function Tempest\Router\uri;
 use function Tempest\view;
 
 final readonly class HomeController
@@ -86,5 +89,13 @@ final readonly class HomeController
         query(Book::class)->select()->with('author')->first();
         query(Book::class)->select()->whereField('title', 'LOTR 5')->first();
         // And all other methods from \Tempest\Database\Builder\QueryBuilders\HasConvenientWhereMethods which have the `$field` parameter.
+    }
+
+    #[Get('/{name}')]
+    public function uri(string $name): Response
+    {
+        return new Ok(
+            uri([self::class, 'uri'], name: $name),
+        );
     }
 }
